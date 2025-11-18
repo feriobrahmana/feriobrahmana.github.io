@@ -11,11 +11,11 @@ Hi sayang! Selamat tanggal 19 yang ke-5 yaa, sayangg!!!
 
 Rio happy banget, banget, banget lho, sayang.
 
-Mungkin kedengarannya lebay untuk seseneng ini buat pacaran kita yang baru menginjak angka 5 bulan… (walau kalau sama masa PDKT mah total udah 7 bulan jadi partner romantis ya, hehe). Tapi buat Rio, angka 5 itu sebenarnya sama dengan 5/42 (5 dari 42 bulan), alias… kita lagi jalan pelan-pelan menuju tahun 2028 (23 tahun lagi!), tahun awal hidup bersama yang kita targetkan, sayang.
+Mungkin kedengarannya lebay untuk seseneng ini buat pacaran kita yang baru menginjak angka 5 bulan… (walau kalau sama masa PDKT mah total udah 7 bulan jadi partner romantis ya, hehe). Tapi buat Rio, angka 5 itu sebenarnya sama dengan 5/42 (5 dari 42 bulan), alias… kita lagi jalan pelan-pelan menuju tahun 2028 (3 tahun lagi!), tahun awal hidup bersama yang kita targetkan, sayang.
 
 Huft… tiap kali mikir itu, perasaan Rio bener-bener membuncah setiap hari. Hahaha.
 
-Nah, sesuai janji Rio, kali ini tulisan Rio bakal lumayan panjang— dan, semoga nggak terlalu panjang ya :(
+Nah, sesuai janji Rio, kali ini tulisan Rio bakal lumayan panjang— tapi, semoga nggak terlalu panjang ya :(
 
 Rio mau cerita tentang impact seorang Cindy ke hidup Rio. Impact yang besar buaanget buat Rio.
 
