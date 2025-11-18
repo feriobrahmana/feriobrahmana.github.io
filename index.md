@@ -231,25 +231,32 @@ title: "Ferio's Blog"
 <div class="site-container">
 
   <section class="hero">
-    <div class="hero-kicker">Ferio Brahmana · Notes & Experiments</div>
-    <h1 class="hero-title">
-      Thinking about <span>biology</span>, <span>networks</span>, and <span>intelligent systems</span>.
-    </h1>
-    <p class="hero-subtitle">
-      I’m a systems biologist and AI enthusiast exploring Boolean networks, cell-fate control,
-      and how we can use computation to understand (and gently hack) complex biological systems.
-      This is my corner of the internet to collect ideas, half-baked thoughts, and projects.
-    </p>
+    <div class="hero">
+      <div class="hero-kicker">Aspiring complex-systems researcher</div>
+      <h1 class="hero-title">
+        Learning how <span>systems</span> behave, so I can be a better
+        scientist, citizen, and human.
+      </h1>
+      <p class="hero-subtitle">
+        I’m exploring complex systems through systems biology and Boolean networks,
+        trying to understand how cells decide their fates. Along the way I’m also
+        learning economics, thinking about how incentives shape societies, and
+        quietly practicing how to be a good lover, partner, and future parent.
+        This blog is where those threads meet.
+      </p>
 
-    <div class="hero-tags">
-      <span class="hero-tag">Boolean networks & cell fate</span>
-      <span class="hero-tag">AI & complex systems</span>
-      <span class="hero-tag">Research, startups & learning in public</span>
-    </div>
+      <div class="hero-tags">
+        <span class="hero-tag">complex systems</span>
+        <span class="hero-tag">systems biology</span>
+        <span class="hero-tag">Boolean networks</span>
+        <span class="hero-tag">economics & incentives</span>
+        <span class="hero-tag">love, care & relationships</span>
+      </div>
 
-    <div class="hero-buttons">
-      <a class="btn-primary" href="#latest-posts">Read latest posts →</a>
-      <a class="btn-ghost" href="#projects">See what I’m working on</a>
+      <div class="hero-buttons">
+        <a class="btn-primary" href="#latest-posts">Read latest posts →</a>
+        <a class="btn-ghost" href="#projects">Coming soon</a>
+      </div>
     </div>
   </section>
 
@@ -285,40 +292,16 @@ title: "Ferio's Blog"
     <aside id="projects" class="card">
       <div class="card-title-row">
         <h2 class="card-title">What I’m working on</h2>
-        <span class="pill">WIP</span>
+        <span class="pill">Coming soon</span>
       </div>
       <p class="card-subtitle">
-        A rotating mix of research, projects, and experiments.
+        I’m still shaping how to talk about my research, tools, and side projects.
+        When things feel a bit more solid, I’ll share them here.
       </p>
-      <ul class="post-list">
-        <li class="post-item">
-          <strong>KICC / transient control in Boolean networks</strong>
-          <div class="post-meta">
-            A framework for identifying minimal, instantaneous interventions that steer
-            cell-fate without permanently editing the network.
-          </div>
-        </li>
-        <li class="post-item">
-          <strong>Story-style explainers on complex systems</strong>
-          <div class="post-meta">
-            Long-form posts and mini-essays on attractors, robustness, and what “control”
-            really means in biology.
-          </div>
-        </li>
-        <li class="post-item">
-          <strong>Bridging research & tools</strong>
-          <div class="post-meta">
-            Simple tools, visualizations, and notes that make my own research workflow less painful.
-          </div>
-        </li>
-      </ul>
-
-      <ul class="stack-list">
-        <li class="stack-item">Python / Julia</li>
-        <li class="stack-item">Network science</li>
-        <li class="stack-item">Logical models</li>
-        <li class="stack-item">AI & simulation</li>
-      </ul>
+      <p class="post-meta">
+        For now, I’m mostly reading, coding, thinking, and trying not to break
+        too many things at once.
+      </p>
     </aside>
 
   </section>
