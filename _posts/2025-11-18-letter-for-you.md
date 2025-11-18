@@ -26,9 +26,9 @@ Rio mau ceritain karena mungkin di kam-nya nggak terlalu kerasa, karena orang bi
 Rio jelas nggak mau jadi yang pertama. Jadi Rio bakal terus bilang ke kam—bahkan ke orang lain kalau perlu—seberapa besar perubahan yang kam bawa ke Rio.
 Kali ini lewat kata-kata dulu… tapi semoga perlahan, semua tindakan Rio bisa beneran mencerminkan apa yang Rio ceritain ke kam ya.
 
-Jadi, perubahan yang Rio rasakan tentu banyak sayang dan mungkin udah ada yang Rio ulang berkali-kali, sedikit dari perubahan-perubahan tersebut misalnya: kebiasaan olahraga, gereja, keluar-keluar untuk kepentingan yang tidak jelas, beneran praktek invest di saham, dan lain sebagainya.
+Jadi, perubahan yang Rio rasakan tentu banyak sayang dan mungkin udah ada yang Rio ulang berkali-kali, sedikit dari perubahan-perubahan tersebut misalnya: memperbaiki kebiasaan olahraga, kembali bergereja, tidak keluar-keluar untuk menghilangkan kesepian (karena you definitely fulfill me), beneran praktek invest di saham, dan lain sebagainya.
 
-Tapi, sebenarnya, ada banyak perubahan yang lebih fundamental yang sebenarnya kam bawa ke Rio..., yang mungkin di awal-awal kita pacaran pun sifatnya masih ada - dan tidak sehat untuk dimiliki lama-lama.
+Tapi, sebenarnya, ada banyak perubahan yang lebih fundamental yang sebenarnya kam bawa ke Rio..., yang mungkin di awal-awal kita pacaran pun sifatnya masih ada - dan tidak sehat sebenarnya untuk dimiliki lama-lama..., let's talk about it sayang!
 
 ## II. Ferio dan perubahan akan rasa penasaran, rasa percaya, rasa takut, dan cinta
 
