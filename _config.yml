@@ -1,0 +1,10 @@
+title: Ferio's Blog
+email: feriobrahmana5@gmail.com
+description: Personal notes and ideas by Ferio Brahmana.
+baseurl: ""
+url: "https://feriobrahmana.github.io"
+
+theme: minima
+
+plugins:
+  - jekyll-feed
