@@ -237,13 +237,45 @@ title: "Ferio's Blog"
         Learning how <span>systems</span> behave, so I can be a better
         scientist, citizen, and human.
       </h1>
-      <p class="hero-subtitle">
-        I’m exploring complex systems through systems biology and Boolean networks,
-        trying to understand how cells decide their fates. Along the way I’m also
-        learning economics, thinking about how incentives shape societies, and
-        quietly practicing how to be a good lover, partner, and future parent.
-        This blog is where those threads meet.
-      </p>
+      <div class="hero-subtitle">
+        <p>
+          This blog is my place to make sense of the systems that shape our world
+          — and the ones that shape me. I’m deeply fascinated by complex systems:
+          how cells make decisions, how networks propagate influence, how
+          incentives move economies, and how people navigate love,
+          responsibility, and the messy work of becoming better versions of
+          themselves.
+        </p>
+        <p>
+          Most of my days are spent inside Boolean networks, cell-fate models,
+          and computational biology. But I’m also learning economics, game
+          theory, and optimization — trying to understand how coordination
+          problems appear everywhere, from molecules to markets. Here, I’ll
+          share:
+        </p>
+        <ul>
+          <li>research notes from systems biology and network science</li>
+          <li>
+            small code projects exploring how we can use networks to understand
+            or solve real problems
+          </li>
+          <li>ideas from economics, incentives, and game theory</li>
+          <li>reflections on papers I find exciting in science, complexity, or behavior</li>
+          <li>
+            and occasionally, my life — love, growing up, expectations,
+            mistakes, and becoming a better partner and future parent
+          </li>
+        </ul>
+        <p>
+          I’m not trying to sound like an expert. I’m just learning in public,
+          thinking out loud, and documenting how my interests slowly converge
+          into something meaningful.
+        </p>
+        <p>
+          If you’re curious about any of these things — welcome. This is my lab
+          notebook for the brain, the heart, and everything in between.
+        </p>
+      </div>
 
       <div class="hero-tags">
         <span class="hero-tag">complex systems</span>
