@@ -118,6 +118,29 @@ title: "Ferio's Chaotic World"
       margin-bottom: 1.5rem;
   }
 
+  .cv-mini-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1rem;
+  }
+
+  .cv-mini-item {
+      margin-bottom: 1rem;
+  }
+
+  .cv-mini-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+  }
+
+  .cv-mini-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+  }
+
   .btn-outline {
       display: inline-flex;
       align-items: center;
@@ -242,13 +265,15 @@ title: "Ferio's Chaotic World"
     <div class="cv-glimpse">
         <div class="section-label">About Me</div>
         <div class="cv-card">
+            <h2 style="font-size: 1.4rem; font-weight: 700; margin: 0 0 1rem;">Ferio Brahmana</h2>
             <div class="cv-role-highlight">Graduate Research Assistant</div>
             <div class="cv-place-highlight">SBIE Laboratory, KAIST</div>
 
             <p class="cv-summary-text">
-                Ferio Brahmana is a Master’s student in Bio and Brain Engineering at KAIST.
-                His background bridges quantitative research and strategic problem-solving across academia and industry,
-                focusing on nonlinear dynamics, network control theory, and systems biology.
+                I am a Master’s student in Bio and Brain Engineering at KAIST (GPA 3.98), focusing on <strong>nonlinear dynamics</strong>, <strong>network control theory</strong>, and <strong>systems biology</strong>. My background bridges quantitative research and strategic problem-solving across academia and industry.
+            </p>
+            <p class="cv-summary-text">
+                Previously, I improved profitability and operational efficiency at <strong>Bank Mandiri</strong> and <strong>Pegipegi</strong> by applying statistical modeling and optimization to finance and digital platforms.
             </p>
 
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
@@ -256,6 +281,25 @@ title: "Ferio's Chaotic World"
                 <span style="font-size: 0.75rem; padding: 0.2rem 0.5rem; background: var(--accent-soft); color: var(--accent); border-radius: 4px;">Network Control</span>
                 <span style="font-size: 0.75rem; padding: 0.2rem 0.5rem; background: var(--accent-soft); color: var(--accent); border-radius: 4px;">Machine Learning</span>
             </div>
+
+            <ul class="cv-mini-list">
+                <li class="cv-mini-item">
+                    <div class="cv-mini-title">KAIST (M.S. Bio & Brain Engineering)</div>
+                    <div class="cv-mini-meta">2024 - Present</div>
+                </li>
+                <li class="cv-mini-item">
+                    <div class="cv-mini-title">ITB (B.S. Engineering Physics)</div>
+                    <div class="cv-mini-meta">2017 - 2021</div>
+                </li>
+                <li class="cv-mini-item">
+                    <div class="cv-mini-title">Bank Mandiri (Asst. Manager)</div>
+                    <div class="cv-mini-meta">2023 - 2024</div>
+                </li>
+                 <li class="cv-mini-item">
+                    <div class="cv-mini-title">Pegipegi (Revenue Analyst)</div>
+                    <div class="cv-mini-meta">2022 - 2023</div>
+                </li>
+            </ul>
 
             <a href="/cv" class="btn-outline">Read Full CV →</a>
         </div>
