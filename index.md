@@ -8,42 +8,87 @@ title: "Ferio's Blog"
 
 <style>
   :root {
+    /* LIGHT MODE (Default) */
     --accent: #f97316;
     --accent-soft: rgba(249,115,22,0.12);
+    --bg-card: #ffffff;
+    --bg-page: #f8fafc; /* Slate 50 */
+    --text-main: #1f2937; /* Gray 800 */
+    --text-muted: #64748b; /* Slate 500 */
+    --border-color: rgba(148,163,184,0.2);
+  }
+
+  [data-theme="dark"] {
+    /* DARK MODE */
     --bg-card: #0b1120;
     --bg-page: radial-gradient(circle at top left, #111827, #020617);
     --text-main: #e5e7eb;
     --text-muted: #9ca3af;
+    --border-color: rgba(148,163,184,0.35);
   }
 
   body {
     background: var(--bg-page);
+    color: var(--text-main);
+    transition: background 0.3s ease, color 0.3s ease;
   }
 
   .page-content {
-    padding-top: 3rem;
+    padding-top: 2rem;
     padding-bottom: 4rem;
   }
 
+  /* Expand container for desktop */
   .site-container {
-    max-width: 880px;
+    max-width: 1400px; /* Wide layout */
+    width: 95%;
     margin: 0 auto;
     padding: 0 1.2rem;
-    color: var(--text-main);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
       sans-serif;
   }
 
+  /* Theme Toggle Button */
+  .theme-toggle {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 0.5rem;
+    border-radius: 999px;
+    cursor: pointer;
+    z-index: 100;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+
+  .theme-toggle:hover {
+      filter: brightness(0.95);
+  }
+
   .hero-container {
-     /* Replace static hero styling with a relative container for the graph */
      position: relative;
      width: 100%;
-     height: 500px; /* Adjust height as needed */
+     height: 60vh; /* Taller on desktop */
+     min-height: 500px;
      border-radius: 1.5rem;
-     border: 1px solid rgba(148,163,184,0.35);
-     box-shadow: 0 18px 45px rgba(15,23,42,0.9);
+     border: 1px solid var(--border-color);
+     box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* softer shadow for light mode */
      overflow: hidden;
-     background: #020617; /* Fallback/base */
+     background: var(--bg-card); /* Match card bg */
+     margin-bottom: 3rem;
+  }
+
+  [data-theme="dark"] .hero-container {
+      background: #020617;
+      box-shadow: 0 18px 45px rgba(15,23,42,0.9);
   }
 
   #network-graph {
@@ -52,16 +97,21 @@ title: "Ferio's Blog"
   }
 
   .hero-overlay {
-    /* Optional: Put some text OVER the graph if needed, but graph is interactive so keep it minimal */
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    pointer-events: none; /* Let clicks pass through to graph */
+    bottom: 30px;
+    left: 30px;
+    pointer-events: none;
     z-index: 10;
-    background: rgba(2, 6, 23, 0.7);
-    padding: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
     border-radius: 1rem;
-    max-width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+
+  [data-theme="dark"] .hero-overlay {
+      background: rgba(2, 6, 23, 0.8);
   }
 
   .hero-kicker {
@@ -72,10 +122,10 @@ title: "Ferio's Blog"
   }
 
   .hero-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 700;
-    line-height: 1.2;
-    margin: 0;
+    line-height: 1.1;
+    margin: 0.5rem 0;
   }
 
   .hero-title span {
@@ -85,16 +135,18 @@ title: "Ferio's Blog"
 
   .layout-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
-    gap: 1.5rem;
-    margin-top: 2.5rem;
+    /* 3 columns on wide screens: 2 for posts, 1 for sidebar */
+    grid-template-columns: 2fr 1fr;
+    gap: 2.5rem;
+    max-width: 1200px; /* Keep content from stretching too wide */
+    margin: 0 auto; /* Center the grid within the wider container */
   }
 
   .card {
     border-radius: 1.2rem;
     background: var(--bg-card);
-    border: 1px solid rgba(148,163,184,0.35);
-    padding: 1.6rem 1.6rem 1.5rem;
+    border: 1px solid var(--border-color);
+    padding: 2rem;
   }
 
   .card-title-row {
@@ -106,12 +158,12 @@ title: "Ferio's Blog"
   }
 
   .card-title {
-    font-size: 1.05rem;
+    font-size: 1.2rem;
     font-weight: 600;
   }
 
   .card-link {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: var(--accent);
     text-decoration: none;
   }
@@ -121,9 +173,10 @@ title: "Ferio's Blog"
   }
 
   .card-subtitle {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--text-muted);
-    margin-bottom: 0.9rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
   }
 
   .post-list {
@@ -132,13 +185,14 @@ title: "Ferio's Blog"
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.85rem;
+    gap: 1.2rem;
   }
 
   .post-item a {
     color: var(--text-main);
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
+    font-weight: 500;
   }
 
   .post-item a:hover {
@@ -146,8 +200,9 @@ title: "Ferio's Blog"
   }
 
   .post-meta {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
+    margin-top: 0.2rem;
   }
 
   .pill {
@@ -167,13 +222,22 @@ title: "Ferio's Blog"
       height: 400px;
     }
     .hero-title {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
     }
     .layout-grid {
       grid-template-columns: minmax(0, 1fr);
     }
+    .site-container {
+        width: 100%;
+        padding: 0 1rem;
+    }
   }
 </style>
+
+<!-- Theme Toggle Button -->
+<button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+    ◐
+</button>
 
 <div class="site-container">
 
@@ -184,13 +248,13 @@ title: "Ferio's Blog"
         <h1 class="hero-title">
             Exploring <span>systems</span> & connections.
         </h1>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">
+        <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.5;">
             Interact with the network to explore my notes on biology, economics, and life.
         </p>
     </div>
   </section>
 
-  <section class="layout-grid" style="margin-top: 2.6rem;">
+  <section class="layout-grid">
 
     <article id="latest-posts" class="card">
       <div class="card-title-row">
