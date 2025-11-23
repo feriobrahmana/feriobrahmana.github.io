@@ -3,6 +3,9 @@ layout: default
 title: "Ferio's Blog"
 ---
 
+<script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<script src="/assets/js/network.js"></script>
+
 <style>
   :root {
     --accent: #f97316;
@@ -31,17 +34,34 @@ title: "Ferio's Blog"
       sans-serif;
   }
 
-  .hero {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 2.5rem 2rem;
-    border-radius: 1.5rem;
-    background: linear-gradient(135deg, #020617, #020617),
-      radial-gradient(circle at top left, rgba(249,115,22,0.18), transparent),
-      radial-gradient(circle at bottom right, rgba(59,130,246,0.18), transparent);
-    border: 1px solid rgba(148,163,184,0.35);
-    box-shadow: 0 18px 45px rgba(15,23,42,0.9);
+  .hero-container {
+     /* Replace static hero styling with a relative container for the graph */
+     position: relative;
+     width: 100%;
+     height: 500px; /* Adjust height as needed */
+     border-radius: 1.5rem;
+     border: 1px solid rgba(148,163,184,0.35);
+     box-shadow: 0 18px 45px rgba(15,23,42,0.9);
+     overflow: hidden;
+     background: #020617; /* Fallback/base */
+  }
+
+  #network-graph {
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-overlay {
+    /* Optional: Put some text OVER the graph if needed, but graph is interactive so keep it minimal */
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    pointer-events: none; /* Let clicks pass through to graph */
+    z-index: 10;
+    background: rgba(2, 6, 23, 0.7);
+    padding: 1rem;
+    border-radius: 1rem;
+    max-width: 80%;
   }
 
   .hero-kicker {
@@ -52,71 +72,16 @@ title: "Ferio's Blog"
   }
 
   .hero-title {
-    font-size: 2.3rem;
+    font-size: 1.5rem;
     font-weight: 700;
     line-height: 1.2;
+    margin: 0;
   }
 
   .hero-title span {
     color: var(--accent);
   }
 
-  .hero-subtitle {
-    font-size: 1rem;
-    color: var(--text-muted);
-    max-width: 40rem;
-  }
-
-  .hero-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.4rem;
-  }
-
-  .hero-tag {
-    font-size: 0.75rem;
-    border-radius: 999px;
-    padding: 0.28rem 0.7rem;
-    border: 1px solid rgba(148,163,184,0.5);
-    background: rgba(15,23,42,0.8);
-  }
-
-  .hero-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.7rem;
-    margin-top: 0.4rem;
-  }
-
-  .btn-primary,
-  .btn-ghost {
-    border-radius: 999px;
-    padding: 0.55rem 1.15rem;
-    font-size: 0.9rem;
-    border: 1px solid transparent;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: #020617;
-    font-weight: 600;
-  }
-
-  .btn-ghost {
-    border-color: rgba(148,163,184,0.7);
-    color: var(--text-main);
-    background: rgba(15,23,42,0.85);
-  }
-
-  .btn-primary:hover,
-  .btn-ghost:hover {
-    filter: brightness(1.08);
-  }
 
   .layout-grid {
     display: grid;
@@ -197,30 +162,12 @@ title: "Ferio's Blog"
     font-weight: 500;
   }
 
-  .stack-list {
-    list-style: none;
-    padding-left: 0;
-    margin: 0.4rem 0 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-  }
-
-  .stack-item {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    border-radius: 999px;
-    padding: 0.18rem 0.55rem;
-    background: rgba(15,23,42,0.9);
-    border: 1px solid rgba(55,65,81,0.9);
-  }
-
   @media (max-width: 800px) {
-    .hero {
-      padding: 1.8rem 1.4rem;
+    .hero-container {
+      height: 400px;
     }
     .hero-title {
-      font-size: 1.8rem;
+      font-size: 1.3rem;
     }
     .layout-grid {
       grid-template-columns: minmax(0, 1fr);
@@ -230,30 +177,16 @@ title: "Ferio's Blog"
 
 <div class="site-container">
 
-  <section class="hero">
-    <div class="hero">
-      <div class="hero-kicker">Aspiring complex-systems researcher</div>
-      <h1 class="hero-title">
-        Learning how <span>systems</span> behave, so I can be a better
-        scientist, citizen, and human.
-      </h1>
-      <div class="hero-subtitle">
-        Learning complex systems, biology, and economics in public — and writing
-        about the science, tools, and relationships that shape me.
-      </div>
-
-      <div class="hero-tags">
-        <span class="hero-tag">complex systems</span>
-        <span class="hero-tag">systems biology</span>
-        <span class="hero-tag">Boolean networks</span>
-        <span class="hero-tag">economics & incentives</span>
-        <span class="hero-tag">love, care & relationships</span>
-      </div>
-
-      <div class="hero-buttons">
-        <a class="btn-primary" href="#latest-posts">Read latest posts →</a>
-        <a class="btn-ghost" href="#projects">Coming soon</a>
-      </div>
+  <section class="hero-container">
+    <div id="network-graph"></div>
+    <div class="hero-overlay">
+        <div class="hero-kicker">Aspiring complex-systems researcher</div>
+        <h1 class="hero-title">
+            Exploring <span>systems</span> & connections.
+        </h1>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">
+            Interact with the network to explore my notes on biology, economics, and life.
+        </p>
     </div>
   </section>
 
@@ -270,7 +203,8 @@ title: "Ferio's Blog"
       </p>
 
       <ul class="post-list">
-        {% for post in site.posts limit:3 %}
+        {% assign public_posts = site.posts | where_exp: "item", "item.hidden != true" %}
+        {% for post in public_posts limit:3 %}
         <li class="post-item">
           <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
           <div class="post-meta">
@@ -278,7 +212,8 @@ title: "Ferio's Blog"
           </div>
         </li>
         {% endfor %}
-        {% if site.posts == empty %}
+
+        {% if public_posts.size == 0 %}
         <li class="post-item">
           <div class="post-meta">No posts yet — first one coming soon.</div>
         </li>

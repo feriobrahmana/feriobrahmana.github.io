@@ -3,6 +3,7 @@ layout: post
 title: "A Letter to My Lover: Ferio Jadi Lebih Baik Karena Cinta-nya Chyntia"
 date: 2025-11-18
 category: letters
+hidden: true
 ---
 
 ## I. Pembuka
