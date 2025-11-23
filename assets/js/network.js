@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const container = document.getElementById("network-graph");
   if (!container) return;
 
+  let network; // Define globally for theme updates
+
   fetch("/graph-data.json")
     .then((response) => response.json())
     .then((data) => {
@@ -57,49 +59,56 @@ document.addEventListener("DOMContentLoaded", function () {
         edges.push({ from: `cat-${post.category}`, to: `post-${index}` });
       });
 
-      // 3. Network Config
+      // 3. Network Config (Initial Options)
       const netData = { nodes: nodes, edges: edges };
-      const options = {
-        nodes: {
-          shape: "dot",
-          font: {
-            color: "#e5e7eb",
-            face: "system-ui",
-          },
-        },
-        groups: {
-          hub: {
-            color: "#f97316", // Accent color
-            font: { size: 18, multi: "html" },
-          },
-          category: {
-            color: "#3b82f6", // Blue
-          },
-          post: {
-            color: "#94a3b8", // Muted
-          },
-        },
-        edges: {
-          color: { inherit: "from", opacity: 0.4 },
-          smooth: { type: "continuous" },
-          width: 1,
-        },
-        physics: {
-          stabilization: false,
-          barnesHut: {
-            gravitationalConstant: -8000,
-            springConstant: 0.04,
-            springLength: 95,
-          },
-        },
-        interaction: {
-          hover: true,
-          tooltipDelay: 200,
-        },
+
+      const getThemeOptions = (theme) => {
+          const isDark = theme === 'dark';
+          const textColor = isDark ? "#e5e7eb" : "#1f2937"; // Gray-200 vs Gray-800
+
+          return {
+            nodes: {
+              shape: "dot",
+              font: {
+                color: textColor,
+                face: "system-ui",
+              },
+            },
+            groups: {
+              hub: {
+                color: "#f97316", // Accent color (Orange)
+                font: { size: 18, multi: "html" },
+              },
+              category: {
+                color: "#3b82f6", // Blue
+              },
+              post: {
+                color: isDark ? "#94a3b8" : "#64748b", // Muted Slate-400 vs Slate-500
+              },
+            },
+            edges: {
+              color: { inherit: "from", opacity: 0.4 },
+              smooth: { type: "continuous" },
+              width: 1,
+            },
+            physics: {
+              stabilization: false,
+              barnesHut: {
+                gravitationalConstant: -8000,
+                springConstant: 0.04,
+                springLength: 95,
+              },
+            },
+            interaction: {
+              hover: true,
+              tooltipDelay: 200,
+            },
+          };
       };
 
-      // 4. Initialize Network
-      const network = new vis.Network(container, netData, options);
+      // 4. Initialize Network with current theme
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+      network = new vis.Network(container, netData, getThemeOptions(currentTheme));
 
       // 5. Events
       network.on("click", function (params) {
@@ -117,9 +126,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (params.nodes.length > 0) {
           const nodeId = params.nodes[0];
           if (nodeId === 0) {
-            // Trigger secret door
-            // Check if the user really wants to go there (simple "password" or just redirect)
-            // For now, just redirect to the private index
              window.location.href = "/private/";
           }
         }
@@ -129,6 +135,36 @@ document.addEventListener("DOMContentLoaded", function () {
       window.addEventListener("resize", () => {
         network.fit();
       });
+
+      // Listen for theme changes from other scripts
+      window.addEventListener('theme-changed', (e) => {
+          const newTheme = e.detail.theme;
+          network.setOptions(getThemeOptions(newTheme));
+      });
+
     })
     .catch((err) => console.error("Failed to load graph data", err));
+});
+
+// Theme Toggler Logic
+document.addEventListener("DOMContentLoaded", function() {
+    const toggleBtn = document.getElementById('theme-toggle');
+    if(!toggleBtn) return;
+
+    // Check saved preference or default to light
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
+    // Update button icon/text if needed (optional)
+
+    toggleBtn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+
+        // Dispatch event for the graph to update
+        window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme: next } }));
+    });
 });
