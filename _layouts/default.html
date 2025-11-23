@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}" data-theme="light">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title | escape }}</title>
+    <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+
+    <style>
+      :root {
+        /* LIGHT MODE (Default) */
+        --accent: #f97316;
+        --accent-soft: rgba(249,115,22,0.12);
+        --bg-card: #ffffff;
+        --bg-page: #f8fafc;
+        --text-main: #1f2937;
+        --text-muted: #64748b;
+        --border-color: rgba(148,163,184,0.2);
+        --header-height: 70px;
+      }
+
+      [data-theme="dark"] {
+        /* DARK MODE */
+        --bg-card: #0b1120;
+        --bg-page: radial-gradient(circle at top left, #111827, #020617);
+        --text-main: #e5e7eb;
+        --text-muted: #9ca3af;
+        --border-color: rgba(148,163,184,0.35);
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg-page);
+        color: var(--text-main);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        transition: background 0.3s ease, color 0.3s ease;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      a:hover {
+        color: var(--accent);
+      }
+
+      /* FULL WIDTH HEADER */
+      .site-header {
+        height: var(--header-height);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2rem;
+        border-bottom: 1px solid var(--border-color);
+        background: var(--bg-card);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .site-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .site-nav {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+      }
+
+      .nav-link {
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+
+      /* FULL WIDTH MAIN CONTENT */
+      .page-content {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 2rem;
+        min-height: calc(100vh - var(--header-height) - 100px);
+      }
+
+      /* Footer */
+      .site-footer {
+        padding: 2rem;
+        text-align: center;
+        border-top: 1px solid var(--border-color);
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      /* Theme Toggle */
+      .theme-toggle-btn {
+        background: none;
+        border: 1px solid var(--border-color);
+        color: var(--text-main);
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9rem;
+      }
+
+      /* Utilities */
+      .container {
+        /* Standard container for text-heavy pages, but default layout is fluid */
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      @media (max-width: 768px) {
+        .site-header {
+            padding: 0 1rem;
+        }
+        .page-content {
+            padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <header class="site-header">
+      <a class="site-title" href="/">{{ site.title | default: "Ferio's Chaotic World" }}</a>
+      <nav class="site-nav">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/cv">CV</a>
+        <!-- <a class="nav-link" href="/blog">Blog</a> -->
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">Theme</button>
+      </nav>
+    </header>
+
+    <main class="page-content" aria-label="Content">
+      {{ content }}
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrapper">
+        <p>Exploring complex systems, biology, and the chaos in between.</p>
+      </div>
+    </footer>
+
+    <script>
+        // Theme Toggler Logic (Global)
+        (function() {
+            const toggleBtn = document.getElementById('theme-toggle');
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+
+            if(toggleBtn) {
+                toggleBtn.addEventListener('click', () => {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    const next = current === 'dark' ? 'light' : 'dark';
+
+                    document.documentElement.setAttribute('data-theme', next);
+                    localStorage.setItem('theme', next);
+
+                    // Dispatch event for components like vis.js
+                    window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme: next } }));
+                });
+            }
+        })();
+    </script>
+
+  </body>
+
+</html>

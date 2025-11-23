@@ -15,10 +15,18 @@ document.addEventListener("DOMContentLoaded", function () {
       const nodes = [
         {
           id: 0,
-          label: "Ferio's\nUniverse",
+          label: "Ferio's\nWorld",
           group: "hub",
-          value: 20,
+          value: 25,
           title: "Double click to enter secret area",
+        },
+        {
+          id: "cv-node",
+          label: "Curriculum\nVitae",
+          group: "cv",
+          value: 15,
+          url: "/cv/",
+          title: "View My CV",
         },
       ];
 
@@ -48,6 +56,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // 2. Create Edges
       const edges = [];
+
+      // Connect CV to Hub
+      edges.push({ from: 0, to: "cv-node", length: 150 });
 
       // Connect Categories to Hub
       categories.forEach((cat) => {
@@ -81,6 +92,10 @@ document.addEventListener("DOMContentLoaded", function () {
               },
               category: {
                 color: "#3b82f6", // Blue
+              },
+              cv: {
+                color: "#10b981", // Emerald Green
+                font: { size: 14 },
               },
               post: {
                 color: isDark ? "#94a3b8" : "#64748b", // Muted Slate-400 vs Slate-500
