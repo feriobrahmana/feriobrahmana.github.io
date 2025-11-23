@@ -1,94 +1,29 @@
 ---
 layout: default
-title: "Ferio's Blog"
+title: "Ferio's Chaotic World"
 ---
 
 <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 <script src="/assets/js/network.js"></script>
 
 <style>
-  :root {
-    /* LIGHT MODE (Default) */
-    --accent: #f97316;
-    --accent-soft: rgba(249,115,22,0.12);
-    --bg-card: #ffffff;
-    --bg-page: #f8fafc; /* Slate 50 */
-    --text-main: #1f2937; /* Gray 800 */
-    --text-muted: #64748b; /* Slate 500 */
-    --border-color: rgba(148,163,184,0.2);
-  }
-
-  [data-theme="dark"] {
-    /* DARK MODE */
-    --bg-card: #0b1120;
-    --bg-page: radial-gradient(circle at top left, #111827, #020617);
-    --text-main: #e5e7eb;
-    --text-muted: #9ca3af;
-    --border-color: rgba(148,163,184,0.35);
-  }
-
-  body {
-    background: var(--bg-page);
-    color: var(--text-main);
-    transition: background 0.3s ease, color 0.3s ease;
-  }
-
-  .page-content {
-    padding-top: 2rem;
-    padding-bottom: 4rem;
-  }
-
-  /* Expand container for desktop */
-  .site-container {
-    max-width: 1400px; /* Wide layout */
-    width: 95%;
-    margin: 0 auto;
-    padding: 0 1.2rem;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-      sans-serif;
-  }
-
-  /* Theme Toggle Button */
-  .theme-toggle {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    color: var(--text-main);
-    padding: 0.5rem;
-    border-radius: 999px;
-    cursor: pointer;
-    z-index: 100;
-    width: 2.5rem;
-    height: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  }
-
-  .theme-toggle:hover {
-      filter: brightness(0.95);
-  }
-
+  /* HERO GRAPH */
   .hero-container {
      position: relative;
      width: 100%;
-     height: 60vh; /* Taller on desktop */
+     height: 60vh;
      min-height: 500px;
      border-radius: 1.5rem;
      border: 1px solid var(--border-color);
-     box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* softer shadow for light mode */
+     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
      overflow: hidden;
-     background: var(--bg-card); /* Match card bg */
-     margin-bottom: 3rem;
+     background: var(--bg-card);
+     margin-bottom: 2.5rem;
   }
 
   [data-theme="dark"] .hero-container {
       background: #020617;
-      box-shadow: 0 18px 45px rgba(15,23,42,0.9);
+      box-shadow: 0 18px 45px rgba(15,23,42,0.5);
   }
 
   #network-graph {
@@ -106,25 +41,26 @@ title: "Ferio's Blog"
     border: 1px solid var(--border-color);
     padding: 1.5rem;
     border-radius: 1rem;
-    max-width: 600px;
+    max-width: 500px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
   }
 
   [data-theme="dark"] .hero-overlay {
       background: rgba(2, 6, 23, 0.8);
+      backdrop-filter: blur(8px);
   }
 
   .hero-kicker {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: .16em;
+    letter-spacing: .12em;
     color: var(--text-muted);
   }
 
   .hero-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.2;
     margin: 0.5rem 0;
   }
 
@@ -132,67 +68,106 @@ title: "Ferio's Blog"
     color: var(--accent);
   }
 
-
-  .layout-grid {
-    display: grid;
-    /* 3 columns on wide screens: 2 for posts, 1 for sidebar */
-    grid-template-columns: 2fr 1fr;
-    gap: 2.5rem;
-    max-width: 1200px; /* Keep content from stretching too wide */
-    margin: 0 auto; /* Center the grid within the wider container */
+  /* HOME GRID */
+  .home-grid {
+      display: grid;
+      /* Split roughly 40% / 60% */
+      grid-template-columns: 1fr 1.5fr;
+      gap: 3rem;
   }
 
-  .card {
-    border-radius: 1.2rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    padding: 2rem;
+  /* LEFT COL: CV Glimpse */
+  .cv-glimpse {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
   }
 
-  .card-title-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 0.7rem;
-    margin-bottom: 0.8rem;
+  .section-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
   }
 
-  .card-title {
-    font-size: 1.2rem;
-    font-weight: 600;
+  .cv-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 1rem;
+      padding: 1.8rem;
   }
 
-  .card-link {
-    font-size: 0.9rem;
-    color: var(--accent);
-    text-decoration: none;
+  .cv-role-highlight {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
   }
 
-  .card-link:hover {
-    text-decoration: underline;
+  .cv-place-highlight {
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
   }
 
-  .card-subtitle {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    margin-bottom: 1.2rem;
-    line-height: 1.5;
+  .cv-summary-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+  }
+
+  .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 99px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-main);
+      transition: all 0.2s;
+  }
+
+  .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+  }
+
+  /* RIGHT COL: Posts & Projects */
+  .content-col {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
   }
 
   .post-list {
     list-style: none;
-    padding-left: 0;
+    padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1.5rem;
+  }
+
+  .post-item {
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+  }
+
+  .post-item:last-child {
+      border-bottom: none;
   }
 
   .post-item a {
     color: var(--text-main);
     text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.4rem;
   }
 
   .post-item a:hover {
@@ -202,46 +177,52 @@ title: "Ferio's Blog"
   .post-meta {
     font-size: 0.85rem;
     color: var(--text-muted);
-    margin-top: 0.2rem;
   }
 
-  .pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 0.2rem 0.55rem;
-    border-radius: 999px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    font-size: 0.75rem;
-    font-weight: 500;
+  .view-all-link {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--accent);
   }
 
-  @media (max-width: 800px) {
+  .working-on-box {
+      background: rgba(148,163,184,0.05);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      border: 1px dashed var(--border-color);
+  }
+
+
+  /* MOBILE RESPONSIVE */
+  @media (max-width: 900px) {
+    .home-grid {
+        grid-template-columns: 1fr; /* Stack vertically */
+    }
+
     .hero-container {
-      height: 400px;
+        height: 50vh;
+        min-height: 400px;
     }
-    .hero-title {
-      font-size: 1.5rem;
-    }
-    .layout-grid {
-      grid-template-columns: minmax(0, 1fr);
-    }
-    .site-container {
-        width: 100%;
-        padding: 0 1rem;
+
+    .hero-overlay {
+        position: static; /* Make it flow normally below graph on mobile */
+        margin-top: -2rem; /* Pull it up slightly over the bottom border if desired, or just let it sit */
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-bottom: 2rem;
+        width: auto;
+        max-width: none;
+        background: var(--bg-card);
+        z-index: 20; /* Ensure it sits on top if pulled up */
+        transform: translateY(-20px); /* Overlap effect */
     }
   }
 </style>
 
-<!-- Theme Toggle Button -->
-<button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
-    ◐
-</button>
-
-<div class="site-container">
-
-  <section class="hero-container">
+<!-- 1. HERO NETWORK -->
+<section class="hero-container">
     <div id="network-graph"></div>
     <div class="hero-overlay">
         <div class="hero-kicker">Aspiring complex-systems researcher</div>
@@ -252,54 +233,72 @@ title: "Ferio's Blog"
             Interact with the network to explore my notes on biology, economics, and life.
         </p>
     </div>
-  </section>
+</section>
 
-  <section class="layout-grid">
+<!-- 2. MAIN GRID -->
+<div class="home-grid">
 
-    <article id="latest-posts" class="card">
-      <div class="card-title-row">
-        <h2 class="card-title">Latest posts</h2>
-        <a class="card-link" href="/blog">View all soon →</a>
-      </div>
-      <p class="card-subtitle">
-        I write about research notes, mental models, and experiments at the intersection of
-        biology, AI, and systems thinking.
-      </p>
+    <!-- LEFT: CV Glimpse -->
+    <div class="cv-glimpse">
+        <div class="section-label">About Me</div>
+        <div class="cv-card">
+            <div class="cv-role-highlight">Graduate Research Assistant</div>
+            <div class="cv-place-highlight">SBIE Laboratory, KAIST</div>
 
-      <ul class="post-list">
-        {% assign public_posts = site.posts | where_exp: "item", "item.hidden != true" %}
-        {% for post in public_posts limit:3 %}
-        <li class="post-item">
-          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          <div class="post-meta">
-            {{ post.date | date: "%b %-d, %Y" }} · {{ post.category | default: "notes" }}
-          </div>
-        </li>
-        {% endfor %}
+            <p class="cv-summary-text">
+                Ferio Brahmana is a Master’s student in Bio and Brain Engineering at KAIST.
+                His background bridges quantitative research and strategic problem-solving across academia and industry,
+                focusing on nonlinear dynamics, network control theory, and systems biology.
+            </p>
 
-        {% if public_posts.size == 0 %}
-        <li class="post-item">
-          <div class="post-meta">No posts yet — first one coming soon.</div>
-        </li>
-        {% endif %}
-      </ul>
-    </article>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
+                <span style="font-size: 0.75rem; padding: 0.2rem 0.5rem; background: var(--accent-soft); color: var(--accent); border-radius: 4px;">System Biology</span>
+                <span style="font-size: 0.75rem; padding: 0.2rem 0.5rem; background: var(--accent-soft); color: var(--accent); border-radius: 4px;">Network Control</span>
+                <span style="font-size: 0.75rem; padding: 0.2rem 0.5rem; background: var(--accent-soft); color: var(--accent); border-radius: 4px;">Machine Learning</span>
+            </div>
 
-    <aside id="projects" class="card">
-      <div class="card-title-row">
-        <h2 class="card-title">What I’m working on</h2>
-        <span class="pill">Coming soon</span>
-      </div>
-      <p class="card-subtitle">
-        I’m still shaping how to talk about my research, tools, and side projects.
-        When things feel a bit more solid, I’ll share them here.
-      </p>
-      <p class="post-meta">
-        For now, I’m mostly reading, coding, thinking, and trying not to break
-        too many things at once.
-      </p>
-    </aside>
+            <a href="/cv" class="btn-outline">Read Full CV →</a>
+        </div>
+    </div>
 
-  </section>
+    <!-- RIGHT: Content -->
+    <div class="content-col">
+
+        <!-- Latest Posts -->
+        <div>
+            <div class="section-label">Latest Writing</div>
+            <ul class="post-list">
+                {% assign public_posts = site.posts | where_exp: "item", "item.hidden != true" %}
+                {% for post in public_posts limit:3 %}
+                <li class="post-item">
+                  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                  <div class="post-meta">
+                    {{ post.date | date: "%b %-d, %Y" }} · {{ post.category | default: "notes" }}
+                  </div>
+                </li>
+                {% endfor %}
+
+                {% if public_posts.size == 0 %}
+                <li class="post-item">
+                  <div class="post-meta">No posts yet — first one coming soon.</div>
+                </li>
+                {% endif %}
+            </ul>
+            <a href="/blog" class="view-all-link">View all posts →</a>
+        </div>
+
+        <!-- Working On -->
+        <div>
+            <div class="section-label">What I'm Working On</div>
+            <div class="working-on-box">
+                <p style="margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+                    I’m still shaping how to talk about my research, tools, and side projects.
+                    Currently reading about boolean networks and trying not to break my simulations.
+                    Check back soon!
+                </p>
+            </div>
+        </div>
+
+    </div>
 
 </div>

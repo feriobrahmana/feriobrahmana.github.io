@@ -65,10 +65,37 @@
         box-sizing: border-box;
       }
 
+      .header-left {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+      }
+
       .site-title {
         font-size: 1.5rem;
         font-weight: 700;
         letter-spacing: -0.02em;
+      }
+
+      /* Theme Toggle */
+      .theme-toggle-btn {
+        background: none;
+        border: 1px solid var(--border-color);
+        color: var(--text-muted);
+        padding: 0.3rem 0.6rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        transition: all 0.2s;
+      }
+
+      .theme-toggle-btn:hover {
+          color: var(--text-main);
+          border-color: var(--text-muted);
       }
 
       .site-nav {
@@ -99,30 +126,15 @@
         font-size: 0.9rem;
       }
 
-      /* Theme Toggle */
-      .theme-toggle-btn {
-        background: none;
-        border: 1px solid var(--border-color);
-        color: var(--text-main);
-        padding: 0.4rem 0.8rem;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 0.9rem;
-      }
-
-      /* Utilities */
-      .container {
-        /* Standard container for text-heavy pages, but default layout is fluid */
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
       @media (max-width: 768px) {
         .site-header {
             padding: 0 1rem;
         }
         .page-content {
             padding: 1rem;
+        }
+        .site-title {
+            font-size: 1.2rem;
         }
       }
     </style>
@@ -131,12 +143,15 @@
   <body>
 
     <header class="site-header">
-      <a class="site-title" href="/">{{ site.title | default: "Ferio's Chaotic World" }}</a>
+      <div class="header-left">
+          <a class="site-title" href="/">{{ site.title | default: "Ferio's Chaotic World" }}</a>
+          <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">Light ☀</button>
+      </div>
+
       <nav class="site-nav">
         <a class="nav-link" href="/">Home</a>
         <a class="nav-link" href="/cv">CV</a>
         <!-- <a class="nav-link" href="/blog">Blog</a> -->
-        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">Theme</button>
       </nav>
     </header>
 
@@ -154,8 +169,20 @@
         // Theme Toggler Logic (Global)
         (function() {
             const toggleBtn = document.getElementById('theme-toggle');
+
+            function updateButton(theme) {
+                if (!toggleBtn) return;
+                if (theme === 'dark') {
+                    toggleBtn.innerHTML = 'Dark ☾';
+                } else {
+                    toggleBtn.innerHTML = 'Light ☀';
+                }
+            }
+
+            // Check saved preference or default to light
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
+            updateButton(savedTheme);
 
             if(toggleBtn) {
                 toggleBtn.addEventListener('click', () => {
@@ -164,6 +191,7 @@
 
                     document.documentElement.setAttribute('data-theme', next);
                     localStorage.setItem('theme', next);
+                    updateButton(next);
 
                     // Dispatch event for components like vis.js
                     window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme: next } }));
