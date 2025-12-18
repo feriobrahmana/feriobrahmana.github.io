@@ -8,3 +8,6 @@ theme: minima
 
 plugins:
   - jekyll-feed
+
+# Show posts with future dates so scheduled private letters appear
+future: true
