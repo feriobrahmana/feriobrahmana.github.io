@@ -286,13 +286,12 @@ title: "Ferio's Chaotic World"
         <div class="cv-role-large">Graduate Research Assistant</div>
         <div class="cv-affiliation">SBIE Laboratory, KAIST</div>
 
+        <div style="font-size: 0.85rem; color: var(--text-muted); margin: 0.8rem 0; line-height: 1.6;">
+            <div>feriobrahmana5@gmail.com</div>
+            <div>feriobrahmana@kaist.ac.kr</div>
+        </div>
+
         <div class="cv-social-links">
-            <!-- Email -->
-            <a href="mailto:feriobrahmana5@gmail.com" aria-label="Email">
-                <svg class="social-icon" viewBox="0 0 24 24">
-                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                </svg>
-            </a>
             <!-- LinkedIn -->
             <a href="https://linkedin.com/in/feriobrahmana" target="_blank" aria-label="LinkedIn">
                 <svg class="social-icon" viewBox="0 0 24 24">
@@ -322,6 +321,17 @@ title: "Ferio's Chaotic World"
             <div class="cv-item-place accent">SBIE Laboratory, KAIST</div>
             <div style="font-size: 0.85rem; color: var(--text-muted);">
                 Focusing on reversion control technology and theory in biological networks using boolean network models.
+            </div>
+        </div>
+
+        <div class="cv-item">
+            <div class="cv-item-role">
+                Research Assistant
+                <span>2024</span>
+            </div>
+            <div class="cv-item-place accent">Institut Teknologi Bandung</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">
+                Utilizing graph neural network for traffic estimation and its control optimization.
             </div>
         </div>
 
