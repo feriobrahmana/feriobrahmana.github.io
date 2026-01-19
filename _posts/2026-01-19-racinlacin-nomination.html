@@ -8,27 +8,12 @@ hidden: true
 
 <style>
   :root {
-    --private-accent: #f59d5f;
-    --private-accent-soft: #fff1e3;
-    --private-text: #2c1810;
-    --private-muted: rgba(44, 24, 16, 0.65);
-    --private-surface: rgba(255, 255, 255, 0.75);
-    --private-border: rgba(245, 157, 95, 0.35);
-    --private-shadow: rgba(245, 157, 95, 0.2);
-    --private-panel: rgba(255, 255, 255, 0.92);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --private-accent: #f4a261;
-      --private-accent-soft: #fde7d3;
-      --private-text: #f8fafc;
-      --private-muted: rgba(248, 250, 252, 0.7);
-      --private-surface: rgba(255, 255, 255, 0.06);
-      --private-border: rgba(244, 162, 97, 0.35);
-      --private-shadow: rgba(244, 162, 97, 0.2);
-      --private-panel: rgba(0, 0, 0, 0.18);
-    }
+    --private-accent: #f4a261;
+    --private-accent-soft: #fde7d3;
+    --private-text: #f8fafc;
+    --private-muted: rgba(248, 250, 252, 0.7);
+    --private-surface: rgba(255, 255, 255, 0.06);
+    --private-border: rgba(244, 162, 97, 0.35);
   }
 
   .private-post {
@@ -77,7 +62,7 @@ hidden: true
 
   .toggle-button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 8px 16px var(--private-shadow);
+    box-shadow: 0 8px 16px rgba(244, 162, 97, 0.2);
   }
 
   .toggle-content {
@@ -95,7 +80,7 @@ hidden: true
     margin-top: 1rem;
     padding: 1rem;
     border-radius: 0.75rem;
-    background: var(--private-panel);
+    background: rgba(0, 0, 0, 0.18);
     border: 1px solid rgba(255, 255, 255, 0.08);
     color: var(--private-text);
   }
