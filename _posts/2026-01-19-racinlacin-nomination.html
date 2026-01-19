@@ -16,6 +16,20 @@ hidden: true
     --private-border: rgba(244, 162, 97, 0.35);
   }
 
+  @media (prefers-color-scheme: light) {
+    :root {
+      --private-text: #111827;
+      --private-muted: rgba(17, 24, 39, 0.7);
+      --private-surface: rgba(17, 24, 39, 0.04);
+      --private-border: rgba(91, 52, 21, 0.2);
+    }
+
+    .toggle-inner {
+      background: rgba(17, 24, 39, 0.04);
+      border: 1px solid rgba(17, 24, 39, 0.08);
+    }
+  }
+
   .private-post {
     max-width: 720px;
     margin: 0 auto;
