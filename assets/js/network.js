@@ -161,25 +161,3 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((err) => console.error("Failed to load graph data", err));
 });
 
-// Theme Toggler Logic
-document.addEventListener("DOMContentLoaded", function() {
-    const toggleBtn = document.getElementById('theme-toggle');
-    if(!toggleBtn) return;
-
-    // Check saved preference or default to light
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-
-    // Update button icon/text if needed (optional)
-
-    toggleBtn.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
-
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
-
-        // Dispatch event for the graph to update
-        window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme: next } }));
-    });
-});
