@@ -2,6 +2,7 @@
 <html lang="{{ page.lang | default: site.lang | default: "en" }}" data-theme="light">
 
   <head>
+    <script>(function(){var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -145,7 +146,7 @@
     <header class="site-header">
       <div class="header-left">
           <a class="site-title" href="/">{{ site.title | default: "Ferio's Chaotic World" }}</a>
-          <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">Light ☀</button>
+          <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">Dark ☾</button>
       </div>
 
       <nav class="site-nav">
@@ -173,9 +174,9 @@
             function updateButton(theme) {
                 if (!toggleBtn) return;
                 if (theme === 'dark') {
-                    toggleBtn.innerHTML = 'Dark ☾';
-                } else {
                     toggleBtn.innerHTML = 'Light ☀';
+                } else {
+                    toggleBtn.innerHTML = 'Dark ☾';
                 }
             }
 
