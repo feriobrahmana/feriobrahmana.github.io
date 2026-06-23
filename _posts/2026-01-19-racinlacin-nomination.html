@@ -8,12 +8,27 @@ hidden: true
 
 <style>
   :root {
+    /* Light Mode (Default) */
+    --private-accent: #c2410c;
+    --private-accent-soft: #ffedd5;
+    --private-text: #1f2937;
+    --private-muted: rgba(31, 41, 55, 0.7);
+    --private-surface: #ffffff;
+    --private-border: rgba(194, 65, 12, 0.2);
+    --private-inner-bg: #f8fafc;
+    --private-inner-border: rgba(31, 41, 55, 0.1);
+  }
+
+  [data-theme="dark"] {
+    /* Dark Mode */
     --private-accent: #f4a261;
     --private-accent-soft: #fde7d3;
     --private-text: #f8fafc;
     --private-muted: rgba(248, 250, 252, 0.7);
     --private-surface: rgba(255, 255, 255, 0.06);
     --private-border: rgba(244, 162, 97, 0.35);
+    --private-inner-bg: rgba(0, 0, 0, 0.18);
+    --private-inner-border: rgba(255, 255, 255, 0.08);
   }
 
   @media (prefers-color-scheme: light) {
@@ -94,8 +109,8 @@ hidden: true
     margin-top: 1rem;
     padding: 1rem;
     border-radius: 0.75rem;
-    background: rgba(0, 0, 0, 0.18);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--private-inner-bg);
+    border: 1px solid var(--private-inner-border);
     color: var(--private-text);
   }
 
