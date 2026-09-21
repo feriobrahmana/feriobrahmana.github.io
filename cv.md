@@ -2,6 +2,7 @@
 layout: default
 title: CV - Ferio Brahmana
 permalink: /cv/
+description: "Research, industry, teaching, projects, and publications by complex-systems researcher Ferio Brahmana."
 ---
 
 <style>
@@ -184,7 +185,6 @@ permalink: /cv/
       <h1 class="cv-name">Ferio Brahmana</h1>
       <div class="cv-contact-info">
         <span class="cv-contact-item">📍 Daejeon, South Korea</span>
-        <span class="cv-contact-item">📞 +01051377883 / +6282167932076</span>
         <span class="cv-contact-item">📧 feriobrahmana5@gmail.com</span>
         <a href="https://linkedin.com/in/feriobrahmana" class="cv-contact-item">🔗 linkedin.com/in/feriobrahmana</a>
       </div>
@@ -197,7 +197,7 @@ permalink: /cv/
         <li class="skill-tag">Pricing Strategy</li>
         <li class="skill-tag">Demand Projection</li>
         <li class="skill-tag">Experiment Analysis</li>
-        <li class="skill-tag">System Biology</li>
+        <li class="skill-tag">Systems Biology</li>
         <li class="skill-tag">Network Control</li>
         <li class="skill-tag">Boolean Network</li>
       </ul>
@@ -221,7 +221,7 @@ permalink: /cv/
     <div class="cv-header-block">
       <h2 class="cv-main-title">Summary</h2>
       <p class="cv-summary">
-        Ferio Brahmana is a cum laude graduate from Institut Teknologi Bandung (Engineering Physics, GPA: 3.81) and a Master’s student in Bio and Brain Engineering at KAIST (GPA: 3.98). His background bridges quantitative research and strategic problem-solving across academia and industry. His graduate research focuses on nonlinear dynamics and network control theory, building on prior publications in traffic modeling with graph neural networks and experimental acoustics engineering. Professionally, he has applied statistical modeling and optimization to finance and digital platforms—developing demand elasticity models, revenue classification frameworks, and time-series forecasts that directly improved profitability and operational efficiency. His interests center on applying mathematical modeling, probabilistic reasoning, and systems thinking to extract structure from complex data and design strategies with measurable impact.
+        Ferio Brahmana is a complex-systems researcher working across systems biology, network control, and quantitative decision-making. He is the first author of a 2026 PNAS paper introducing NUDGE, a framework for identifying minimal temporary interventions that redirect cell fate while preserving natural regulatory dynamics. His background bridges biological networks, machine learning, experimental engineering, and industry strategy. Across these domains, his work uses mathematical modeling and systems thinking to find high-leverage interventions in complex data and dynamic systems.
       </p>
     </div>
 
@@ -235,8 +235,8 @@ permalink: /cv/
         </div>
         <div class="cv-company">Master of Science; Bio and Brain Engineering; GPA: 3.98/4.30</div>
         <ul class="cv-details">
-            <li><strong>Highlighted Coursework:</strong> System Biology, Stem Cell Biology, Current Topics in Stem Cell and Regenerative Biology</li>
-            <li><strong>Keywords:</strong> System Biology, Network Control, Boolean Network, Reverse Control Theory</li>
+            <li><strong>Highlighted Coursework:</strong> Systems Biology, Stem Cell Biology, Current Topics in Stem Cell and Regenerative Biology</li>
+            <li><strong>Keywords:</strong> Systems Biology, Network Control, Boolean Networks, Cell-Fate Control</li>
         </ul>
       </div>
 
@@ -263,9 +263,9 @@ permalink: /cv/
         </div>
         <div class="cv-company">SBIE Laboratory, Daejeon, South Korea</div>
         <ul class="cv-details">
-          <li>Focus on reversion control technology and theory in biological network using boolean network model.</li>
-          <li>Actively try to contribute more on the topics of controllability and reversal theory on stem cell.</li>
-          <li>Engaging to a lot of complex science related topics (self-emergence biological phenomena) and utilized it for biological network research.</li>
+          <li>Developed methods for minimal, temporary control of cell fate in Boolean models of gene-regulatory networks.</li>
+          <li>Created NUDGE, a framework formally guaranteed to identify minimal interventions while conserving natural regulatory dynamics.</li>
+          <li>Applied network-control methods to biological questions spanning heart regeneration, mast-cell fate, and macrophage response diversity.</li>
         </ul>
       </div>
 
@@ -368,9 +368,14 @@ permalink: /cv/
     </div>
 
     <div>
-        <h2 class="cv-main-title">Notable Researches</h2>
+        <h2 class="cv-main-title">Selected Research</h2>
 
         <div class="cv-entry">
+            <h3 style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.5rem;">Systems Biology / Network Control</h3>
+            <div class="cv-publication">
+                <strong>Brahmana, Ferio</strong>, Corbin Hopper, Woojeong Lee, and Kwang-Hyun Cho. “Uncovering minimal control of cell fate by natural dynamics.” <em>Proceedings of the National Academy of Sciences</em> 123, no. 38 (2026). <a href="https://doi.org/10.1073/pnas.2604777123" target="_blank" rel="noopener noreferrer">DOI ↗</a>
+            </div>
+
             <h3 style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.5rem;">Machine Learning / AI</h3>
             <div class="cv-publication">
                 Putri, Adiyana, Ferio Brahmana, Endra Joelianto, and Herman Y. Sutarto. "Traffic Flow Estimation using Graph Neural Network with Aggregation of Traffic Features." In 2022 17th International Conference on Control, Automation, Robotics and Vision (ICARCV), pp. 972-977. IEEE, 2022.

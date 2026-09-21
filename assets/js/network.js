@@ -1,163 +1,101 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const container = document.getElementById("network-graph");
-  if (!container) return;
+  var map = document.getElementById("systems-map");
+  if (!map) return;
 
-  let network; // Define globally for theme updates
+  var nodes = Array.prototype.slice.call(map.querySelectorAll(".map-node"));
+  var edges = Array.prototype.slice.call(map.querySelectorAll("[data-edge]"));
+  var inspectorKicker = document.getElementById("inspector-kicker");
+  var inspectorTitle = document.getElementById("inspector-title");
+  var inspectorBody = document.getElementById("inspector-body");
+  var inspectorLink = document.getElementById("inspector-link");
+  var core = map.querySelector('[data-node="core"]');
+  var holdTimer = null;
 
-  fetch("/graph-data.json")
-    .then((response) => response.json())
-    .then((data) => {
-      // Filter out hidden posts for the public view
-      const publicPosts = data.filter((post) => !post.hidden);
+  function relatedIds(node) {
+    return (node.dataset.related || "")
+      .split(",")
+      .map(function (value) { return value.trim(); })
+      .filter(Boolean);
+  }
 
-      // 1. Create Nodes
-      // Central Node
-      const nodes = [
-        {
-          id: 0,
-          label: "Ferio's\nWorld",
-          group: "hub",
-          value: 25,
-          title: "Double click to enter secret area",
-        },
-        {
-          id: "cv-node",
-          label: "Curriculum\nVitae",
-          group: "cv",
-          value: 15,
-          url: "/cv/",
-          title: "View My CV",
-        },
-      ];
+  function selectNode(node) {
+    var id = node.dataset.node;
+    var related = relatedIds(node);
 
-      // Category Hubs
-      const categories = [...new Set(publicPosts.map((p) => p.category))];
-      categories.forEach((cat, index) => {
-        nodes.push({
-          id: `cat-${cat}`,
-          label: cat.charAt(0).toUpperCase() + cat.slice(1),
-          group: "category",
-          value: 10,
-        });
-      });
+    nodes.forEach(function (candidate) {
+      var candidateId = candidate.dataset.node;
+      candidate.classList.toggle("is-active", candidate === node);
+      candidate.classList.toggle("is-related", related.indexOf(candidateId) !== -1);
+      candidate.setAttribute("aria-pressed", candidate === node ? "true" : "false");
+    });
 
-      // Post Nodes
-      publicPosts.forEach((post, index) => {
-        nodes.push({
-          id: `post-${index}`,
-          label: post.title.length > 20 ? post.title.substring(0, 20) + "..." : post.title,
-          group: "post",
-          value: 5,
-          url: post.url,
-          title: post.title, // Tooltip
-          categoryId: `cat-${post.category}`,
-        });
-      });
+    edges.forEach(function (edge) {
+      var endpoints = edge.dataset.edge.split(",");
+      edge.classList.toggle("is-active", endpoints.indexOf(id) !== -1);
+    });
 
-      // 2. Create Edges
-      const edges = [];
+    inspectorKicker.textContent = node.dataset.kicker || "System node";
+    inspectorTitle.textContent = node.dataset.title || "Untitled node";
+    inspectorBody.textContent = node.dataset.body || "";
 
-      // Connect CV to Hub
-      edges.push({ from: 0, to: "cv-node", length: 150 });
+    if (node.dataset.link) {
+      inspectorLink.hidden = false;
+      inspectorLink.href = node.dataset.link;
+      inspectorLink.textContent = node.dataset.linkLabel || "Open node →";
 
-      // Connect Categories to Hub
-      categories.forEach((cat) => {
-        edges.push({ from: 0, to: `cat-${cat}` });
-      });
+      if (/^https?:\/\//.test(node.dataset.link)) {
+        inspectorLink.target = "_blank";
+        inspectorLink.rel = "noopener noreferrer";
+      } else {
+        inspectorLink.removeAttribute("target");
+        inspectorLink.removeAttribute("rel");
+      }
+    } else {
+      inspectorLink.hidden = true;
+      inspectorLink.removeAttribute("href");
+    }
+  }
 
-      // Connect Posts to Categories
-      publicPosts.forEach((post, index) => {
-        edges.push({ from: `cat-${post.category}`, to: `post-${index}` });
-      });
+  nodes.forEach(function (node) {
+    node.setAttribute("aria-pressed", node.classList.contains("is-active") ? "true" : "false");
+    node.addEventListener("click", function () { selectNode(node); });
+  });
 
-      // 3. Network Config (Initial Options)
-      const netData = { nodes: nodes, edges: edges };
+  function enterTunnel() {
+    document.body.classList.add("entering-tunnel");
+    window.setTimeout(function () { window.location.assign("/private/"); }, 260);
+  }
 
-      const getThemeOptions = (theme) => {
-          const isDark = theme === 'dark';
-          const textColor = isDark ? "#e5e7eb" : "#1f2937"; // Gray-200 vs Gray-800
+  function cancelHold() {
+    if (holdTimer !== null) {
+      window.clearTimeout(holdTimer);
+      holdTimer = null;
+    }
+  }
 
-          return {
-            nodes: {
-              shape: "dot",
-              font: {
-                color: textColor,
-                face: "system-ui",
-              },
-            },
-            groups: {
-              hub: {
-                color: "#f97316", // Accent color (Orange)
-                font: { size: 18, multi: "html" },
-              },
-              category: {
-                color: "#3b82f6", // Blue
-              },
-              cv: {
-                color: "#10b981", // Emerald Green
-                font: { size: 14 },
-              },
-              post: {
-                color: isDark ? "#94a3b8" : "#64748b", // Muted Slate-400 vs Slate-500
-              },
-            },
-            edges: {
-              color: { inherit: "from", opacity: 0.4 },
-              smooth: { type: "continuous" },
-              width: 1,
-            },
-            physics: {
-              stabilization: false,
-              barnesHut: {
-                gravitationalConstant: -8000,
-                springConstant: 0.04,
-                springLength: 95,
-              },
-            },
-            interaction: {
-              hover: true,
-              tooltipDelay: 200,
-            },
-          };
-      };
+  if (core) {
+    core.addEventListener("dblclick", function (event) {
+      event.preventDefault();
+      enterTunnel();
+    });
 
-      // 4. Initialize Network with current theme
-      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-      network = new vis.Network(container, netData, getThemeOptions(currentTheme));
+    core.addEventListener("pointerdown", function (event) {
+      if (event.pointerType === "mouse") return;
+      cancelHold();
+      holdTimer = window.setTimeout(enterTunnel, 850);
+    });
 
-      // 5. Events
-      network.on("click", function (params) {
-        if (params.nodes.length > 0) {
-          const nodeId = params.nodes[0];
-          const node = nodes.find((n) => n.id === nodeId);
-          if (node && node.url) {
-            window.location.href = node.url;
-          }
-        }
-      });
+    ["pointerup", "pointercancel", "pointerleave"].forEach(function (eventName) {
+      core.addEventListener(eventName, cancelHold);
+    });
 
-      // Secret Door: Double click the central hub
-      network.on("doubleClick", function (params) {
-        if (params.nodes.length > 0) {
-          const nodeId = params.nodes[0];
-          if (nodeId === 0) {
-             window.location.href = "/private/";
-          }
-        }
-      });
+    core.addEventListener("keydown", function (event) {
+      if (event.shiftKey && event.key === "Enter") {
+        event.preventDefault();
+        enterTunnel();
+      }
+    });
+  }
 
-      // Responsive sizing
-      window.addEventListener("resize", () => {
-        network.fit();
-      });
-
-      // Listen for theme changes from other scripts
-      window.addEventListener('theme-changed', (e) => {
-          const newTheme = e.detail.theme;
-          network.setOptions(getThemeOptions(newTheme));
-      });
-
-    })
-    .catch((err) => console.error("Failed to load graph data", err));
+  selectNode(core || nodes[0]);
 });
-

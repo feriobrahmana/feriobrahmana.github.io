@@ -2,20 +2,41 @@
 layout: default
 title: "Private Archive"
 permalink: /private/
+description: "A hidden archive."
+robots: noindex,nofollow
 ---
 
 <style>
   :root {
     --accent: #ec4899; /* Pink accent for personal stuff */
     --accent-soft: rgba(236, 72, 153, 0.12);
-    --bg-page: radial-gradient(circle at top left, #310b1e, #020617);
+    --bg-page: #120711;
+    --bg-card: #190b17;
+    --bg-card-strong: #21101e;
+    --text-main: #fce7f3;
+    --text-muted: #c4a4b7;
+    --border-color: rgba(244, 114, 182, 0.24);
+    --grid-color: rgba(244, 114, 182, 0.055);
+  }
+
+  .theme-toggle-btn { display: none; }
+
+  .private-container {
+    max-width: 880px;
+    margin: 2rem auto;
+    padding: clamp(1.2rem, 4vw, 3rem);
+    border: 1px solid rgba(236, 72, 153, 0.35);
+    background: rgba(49, 11, 30, 0.18);
+    box-shadow: 8px 8px 0 rgba(0,0,0,.25);
   }
 
   .private-header {
     margin-bottom: 2rem;
     border-bottom: 1px solid rgba(236, 72, 153, 0.3);
-    padding-bottom: 1rem;
+    padding-bottom: 1.5rem;
   }
+
+  .private-signal { color: #f9a8d4; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; }
 
   .private-title {
     font-size: 2rem;
@@ -34,6 +55,7 @@ permalink: /private/
     border-radius: 0.8rem;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 4px 4px 0 rgba(0,0,0,.16);
   }
 
   .post-item-private a {
@@ -54,8 +76,9 @@ permalink: /private/
   }
 </style>
 
-<div class="site-container page-content">
+<div class="private-container">
   <div class="private-header">
+    <div class="private-signal">Tunnel endpoint // Access granted</div>
     <h1 class="private-title">Private Archive</h1>
     <p style="color: var(--text-muted)">A safe place for personal letters and thoughts.</p>
   </div>

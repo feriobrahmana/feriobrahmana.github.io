@@ -1,14 +1,14 @@
 ---
 layout: null
 ---
+{% assign public_posts = site.posts | where_exp: "item", "item.hidden != true" %}
 [
-  {% for post in site.posts %}
+  {% for post in public_posts %}
     {
-      "title": "{{ post.title | escape }}",
-      "url": "{{ post.url | relative_url }}",
-      "date": "{{ post.date | date_to_string }}",
-      "category": "{{ post.category | default: 'uncategorized' }}",
-      "hidden": {{ post.hidden | default: false }}
+      "title": {{ post.title | jsonify }},
+      "url": {{ post.url | relative_url | jsonify }},
+      "date": {{ post.date | date_to_string | jsonify }},
+      "category": {{ post.category | default: "uncategorized" | jsonify }}
     }{% unless forloop.last %},{% endunless %}
   {% endfor %}
 ]
